@@ -18,8 +18,8 @@ export default function LogInPage() {
 
     return (
         <div>
-            <input placeholder="email" onChange={(e) => setEmail(e.target.value)} />
-            <input placeholder="password" onChange={(e) => setPassword(e.target.value)} />
+            <input type="email" placeholder="email" onChange={(e) => setEmail(e.target.value)} />
+            <input type="password" placeholder="password" onChange={(e) => setPassword(e.target.value)} />
             <button onClick={handleSubmit} disabled={loading}>
                 Log In
             </button>

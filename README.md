@@ -1,36 +1,159 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Nextjs Zustans Typescript 🚀
 
-## Getting Started
+A learning-focused **Next.js** project built to deeply understand **state management**, **application structure**, and **scalable frontend architecture** using modern tools.
 
-First, run the development server:
+This project demonstrates how to combine:
+- **Zustand** for global & async state
+- **Context API** for read-only/global configuration
+- **Next.js App Router**
+- **TypeScript**
+- **Tailwind CSS**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🧠 Goals of This Project
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Understand **Zustand flow** (store → API → UI)
+- Separate **business logic**, **state**, and **UI**
+- Use **Context API** only where it makes sense (read-only data)
+- Follow a **modular and scalable folder structure**
+- Practice **clean architecture patterns** in Next.js
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🛠 Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
+- **Next.js (App Router)**
+- **TypeScript**
+- **Tailwind CSS**
+- **Zustand** (with `persist` & `devtools`)
+- **Context API**
+- **Fetch API**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📁 Folder Structure
 
-## Deploy on Vercel
+```txt
+public/
+ └── assets/
+     └── images
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+src/
+ ├── app/
+ │   ├── (modules)/
+ │   │   ├── (auth)/
+ │   │   │   ├── login/
+ │   │   │   │   └── page.tsx
+ │   │   │   └── signup/
+ │   │   │       └── page.tsx
+ │   │   └── home/
+ │   │       └── page.tsx
+ │   ├── globals.css
+ │   ├── layout.tsx
+ │   └── page.tsx
+ │
+ ├── components/
+ │   └── (shared UI components)
+ │
+ ├── config/
+ │   └── env.ts
+ │
+ ├── context/
+ │   └── GlobalContext.tsx
+ │
+ ├── services/
+ │   └── auth.service.ts
+ │
+ └── store/
+     └── useAuthStore.ts
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+.env.local
+.env.production
+
+
+🧩 Architecture Overview
+
+1️⃣ Zustand (State Management)
+
+      Handles:
+            Login state
+            Signup state
+            API loading/error/data handling
+
+      Async API logic lives inside the store
+
+      Uses:
+            persist → store data in localStorage
+            devtools → Redux DevTools support
+
+📍 Location: src/store/useAuthStore.ts
+
+
+2️⃣ Context API (Read-Only Data)
+
+Used only for:
+
+      Global configuration
+      Static or rarely-changing values
+      Avoids unnecessary re-renders
+
+📍 Location: src/context/GlobalContext.tsx
+
+
+3️⃣ Services Layer
+
+      Handles API request logic
+      Keeps store clean & readable
+      Easy to replace with Axios later
+
+📍 Location: src/services/auth.service.ts
+
+
+4️⃣ App Router & Modules
+
+      Uses route groups (modules) and (auth)
+      Clean separation of features
+      Easy to scale with more modules
+
+Example:
+
+      (auth)/login
+      (auth)/signup
+
+
+🌱 Environment Variables
+
+Create .env.local:: NEXT_PUBLIC_API_BASE_URL=http://localhost:5000/api
+Used via:: src/config/env.ts
+
+▶️ Running the Project
+
+      npm install
+      npm run dev
+
+Open:: http://localhost:3000
+
+
+📌 Key Learning Takeaways
+
+      When to use Zustand vs Context
+      How to avoid unnecessary API calls
+      Clean separation of concerns
+      Scalable folder organization
+      Real-world Next.js patterns
+
+📈 Future Improvements
+
+      Protected routes
+      Middleware-based auth
+      Role-based access
+      Axios + interceptors
+      Form validation (Zod / React Hook Form)
+      Unit testing
+
+👤 Author
+Vikas Kumar Gupta
+
+Frontend Developer
+Focused on Next.js, State Management & Clean Architecture

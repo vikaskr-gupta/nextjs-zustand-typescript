@@ -34,7 +34,7 @@ This project demonstrates how to combine:
 
 ## 📁 Folder Structure
 
-```txt
+
 public/
  └── assets/
      └── images
@@ -51,7 +51,8 @@ src/
  │   │       └── page.tsx
  │   ├── globals.css
  │   ├── layout.tsx
- │   └── page.tsx
+ │   ├── page.tsx
+ │   └── providers.tsx
  │
  ├── components/
  │   └── (shared UI components)
@@ -65,8 +66,10 @@ src/
  ├── services/
  │   └── auth.service.ts
  │
- └── store/
-     └── useAuthStore.ts
+ ├── store/
+ |   └── useAuthStore.ts
+ |
+ └── middleware.ts
 
 .env.local
 .env.production
@@ -110,11 +113,11 @@ Used only for:
 📍 Location: src/services/auth.service.ts
 
 
-4️⃣ App Router & Modules
+4️⃣ App Router & Route Groups
 
-      Uses route groups (modules) and (auth)
-      Clean separation of features
-      Easy to scale with more modules
+Uses route groups for clean separation:
+      (auth) → authentication-related pages
+      (modules) → feature-based pages
 
 Example:
 
@@ -122,9 +125,33 @@ Example:
       (auth)/signup
 
 
+
+🔐 Protected Routes (Middleware-Based)
+
+This project uses Next.js Middleware to protect routes at the edge, before the page loads.
+
+✅ Rules Implemented
+
+      Unauthenticated users
+            Can access: /login, /signup
+            Redirected to /login when accessing protected pages
+      Authenticated users
+            Can access all protected routes
+            Cannot access /login or /signup
+            Automatically redirected to /home
+
+🧠 How It Works
+
+      Auth token is stored in a cookie
+      Middleware checks the token on every request
+      Redirection happens before rendering
+
+📍 Location: src/middleware.ts
+
+
 🌱 Environment Variables
 
-Create .env.local:: NEXT_PUBLIC_API_BASE_URL=http://localhost:5000/api
+Create .env.local:: NEXT_PUBLIC_API_BASE_URL=http://localhost:3076/api
 Used via:: src/config/env.ts
 
 ▶️ Running the Project
@@ -137,7 +164,9 @@ Open:: http://localhost:3000
 
 📌 Key Learning Takeaways
 
-      When to use Zustand vs Context
+      When to use Zustand vs Context API
+      How to implement protected routes correctly
+      How middleware improves security & UX
       How to avoid unnecessary API calls
       Clean separation of concerns
       Scalable folder organization
@@ -145,12 +174,12 @@ Open:: http://localhost:3000
 
 📈 Future Improvements
 
-      Protected routes
-      Middleware-based auth
-      Role-based access
-      Axios + interceptors
-      Form validation (Zod / React Hook Form)
-      Unit testing
+      Role-based access control (RBAC)
+      Token refresh handling
+      Axios with interceptors
+      Form validation (Formic / React Hook Form)
+      Unit & integration testing
+      Better error boundaries
 
 👤 Author
 Vikas Kumar Gupta

@@ -41,6 +41,8 @@ export const useAuthStore = create<AuthStore>()(
                         const res = await logInAPI(payload);
                         const data = res?.data;
 
+                        document.cookie = `token=${data?.token}; path=/`;
+
                         set({
                             user: {
                                 userId: data?.userId,
@@ -89,6 +91,8 @@ export const useAuthStore = create<AuthStore>()(
                 },
 
                 logout: () => {
+                    document.cookie = "token=; Max-Age=0; path=/";
+                    
                     set({
                         user: null,
                         token: null,

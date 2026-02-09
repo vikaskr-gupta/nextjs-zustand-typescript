@@ -1,10 +1,10 @@
 "use client"
 
-import { useGlobalContext } from "../context/GlobalContext";
+// import { useGlobalContext } from "../context/GlobalContext";
 
 export default function Home() {
 
-  const { isAuthenticated } = useGlobalContext();
+  // const { isAuthenticated } = useGlobalContext();
   // console.log("Home - isAuthenticated:", isAuthenticated);
 
   return (

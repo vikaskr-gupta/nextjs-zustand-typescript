@@ -11,6 +11,11 @@ type GlobalContextType = {
     setUserData: (data: any[]) => void;
 };
 
+type UserData = {
+    id: number;
+    name: string;
+};
+
 const GlobalContext = createContext<GlobalContextType | null>(null);
 
 export const GlobalProvider = ({ children }: { children: React.ReactNode }) => {
@@ -18,7 +23,7 @@ export const GlobalProvider = ({ children }: { children: React.ReactNode }) => {
     const userId = useAuthStore((state) => state.user?.userId ?? null);
     const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
 
-    const [userData, setUserData] = useState<any[]>([]);
+    const [userData, setUserData] = useState<UserData[]>([]);
 
     const value = useMemo(
         () => ({

@@ -67,12 +67,13 @@ src/
  │   └── auth.service.ts
  │
  ├── store/
- |   └── useAuthStore.ts
- |
+ │   └── useAuthStore.ts
+ │
  └── middleware.ts
 
 .env.local
 .env.production
+
 
 
 🧩 Architecture Overview

@@ -30,7 +30,8 @@ This project demonstrates how to combine:
 - **Context API**
 - **Fetch API**
 
----
+
+```txt
 
 ## 📁 Folder Structure
 
